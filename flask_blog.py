@@ -2,9 +2,14 @@ from datetime import datetime
 from flask import Flask, render_template, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 from forms import RegistrationForm, LoginForm
+import os
+from dotenv import load_dotenv
+
+# Load environment
+load_dotenv()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '190badb1c44ce2be4b4942a0ca958d51'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 
